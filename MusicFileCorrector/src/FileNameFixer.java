@@ -5,12 +5,12 @@ import java.util.Arrays;
 
 public class FileNameFixer {
 
-    private static final String[] smallWords = {"the", "to", "in", "a", "of", "as"};
+    private static final String[] smallWords = {"the", "to", "in", "a", "of", "as", "on", "for", "at", "by"};
     private static final MusicFileFilter filter = new MusicFileFilter();
 
     /**
      * Extracts a filename from a file path, and re-formats the name.
-     * @param path a pith leading to the file that we wish to modify
+     * @param path a path leading to the file that we wish to modify
      * @return a String array containing the new filename and the path leading to the file's original location
      */
     public static String[] fixFileName(File path) {
@@ -18,7 +18,7 @@ public class FileNameFixer {
         String stringPath = path.getAbsoluteFile().toString();
         String fileName = stringPath.substring(stringPath.lastIndexOf("\\")+1);
 
-        // Skip if the file is not an audio file
+        // Skip if it's not an audio file
         String fileExt = fileName.substring(fileName.lastIndexOf(".")+1);
 
         if (!filter.accept(path, fileExt)) {
@@ -27,10 +27,9 @@ public class FileNameFixer {
         }
 
         ArrayList<String> wordList = new ArrayList<>();
-        String[] splitName = fileName.split("[ -.]");
 
         // Ensure the word w isn't empty before adding it
-        for (String w : splitName) { if (w.compareTo("") != 0) wordList.add(w); }
+        for (String w : fileName.split("[ -.]")) { if (w.compareTo("") != 0) wordList.add(w); }
 
         String[] fixedWordList = new String[wordList.size()];
 
@@ -67,7 +66,7 @@ public class FileNameFixer {
 
         newFilename = newFilename + "." + fixedWordList[fixedWordList.length-1];
 
-        return(new String[]{newFilename, fileName.substring(0, fileName.lastIndexOf("\\")+1)});
+        return(new String[]{newFilename, stringPath.substring(0, stringPath.lastIndexOf("\\")+1)});
 
     }
 

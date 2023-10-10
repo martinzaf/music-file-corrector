@@ -22,15 +22,13 @@ public class Main {
 
             if (result != null) {
 
-                //System.out.println(result[1] + result[0]);
-
                 if (Arrays.stream(args).anyMatch("-w" :: contains)) {
 
                     String newName = result[1] + result[0];
 
-                    if (path.renameTo(new File(newName))) System.out.println(path + " has been renamed to: " + newName);
+                    if (path.renameTo(new File(newName)))
+                        System.out.println("'" + path + "'" + " has been renamed to: " + newName);
                 }
-
                 output.write(result[0] + "\n");
             }
         }

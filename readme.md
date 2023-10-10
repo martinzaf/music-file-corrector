@@ -10,8 +10,20 @@ Takes two arguments:
 2. (optional). **-w**: changes each filename to the corrected name
 in addition to writing the corrected names in an output document.
 
-## Planned Features
+### Example
 
+The following image illustrates the current capabilities of the project.
+It's able to separate the track number and words, and reformat them to fit 
+the template of "XX. (track title)":
+
+![An illustration of the code reformatting inconsistent filenames for music files.](example.png)
+
+
+## Considered Features
+
+- Accurately verifying the number of tracks, and consequently the number of zeroes required for each track number
+- Different formatting parameters based on structure
+  - Example: Instead of "XX. (track title)", there can be "XX - (track title)"
 - Different formatting parameters based on language
   - Example: in French, words in a song are all in minuscule save for the first word and any proper nouns
-- Checking if 
+- Linux support (replace back slash with forward slash when looking for the filename in folder path)
